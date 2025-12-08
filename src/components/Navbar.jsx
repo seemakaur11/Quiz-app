@@ -11,6 +11,12 @@ export default function Navbar() {
         <nav className={styles.navbar}>
             <div className={`container ${styles.container}`}>
                 <Link href="/" className={styles.logo}>
+                    <span className={styles.logoIcon} aria-hidden="true"> 
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7v6c0 5 3.8 9.74 9 11 5.2-1.26 9-6 9-11V7l-9-5z" fill="currentColor"/>
+                            <path d="M12 12a3 3 0 100-6 3 3 0 000 6z" fill="white" opacity="0.9"/>
+                        </svg>
+                    </span>
                     QuizMaster
                 </Link>
                 <div className={styles.links}>

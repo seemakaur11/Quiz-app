@@ -22,6 +22,14 @@
     -webkit-text-fill-color: transparent;
 }
 
+.logoIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+    color: #8b5cf6; /* purple accent */
+}
+
 .links {
     display: flex;
     align-items: center;
