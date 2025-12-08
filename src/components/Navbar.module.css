@@ -1,0 +1,64 @@
+.navbar {
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.link {
+    color: #cbd5e1;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.link:hover {
+    color: white;
+}
+
+.welcome {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.logoutBtn {
+    background: none;
+    border: 1px solid var(--card-border);
+    color: #cbd5e1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.registerBtn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}

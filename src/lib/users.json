@@ -1,0 +1,14 @@
+[
+    {
+        "id": "admin-1",
+        "username": "admin",
+        "password": "password123",
+        "role": "ADMIN"
+    },
+    {
+        "id": "30655919-7171-4ece-b456-61da46f54528",
+        "username": "seema",
+        "password": "seema123",
+        "role": "USER"
+    }
+]
