@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './create.module.css';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
@@ -14,13 +14,16 @@ export default function CreateQuizPage() {
         { text: '', options: ['', '', '', ''], correctAnswer: 0 }
     ]);
 
-    // Protect Route
-    if (!loading && !user) {
-        router.push('/login');
-        return null;
-    }
+    // Protect Route - Admin only
+    useEffect(() => {
+        if (!loading && (!user || user.role !== 'ADMIN')) {
+            router.push('/login');
+        }
+    }, [user, loading, router]);
 
-    if (loading) return <div className="container" style={{ textAlign: 'center', marginTop: '4rem' }}>Loading...</div>;
+    if (loading || !user || user.role !== 'ADMIN') {
+        return <div className="container" style={{ textAlign: 'center', marginTop: '4rem' }}>Loading...</div>;
+    }
 
     const handleQuestionChange = (index, field, value) => {
         const newQuestions = [...questions];
