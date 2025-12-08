@@ -1,7 +1,6 @@
 'use client';
 
 import QuizTaker from '@/components/QuizTaker';
-import { getQuizById } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -15,11 +14,16 @@ export default function QuizPage({ params }) {
 
     useEffect(() => {
         const fetchQuiz = async () => {
-            const quizData = await getQuizById(params.id);
-            if (!quizData) {
+            try {
+                const res = await fetch(`/api/quizzes/${params.id}`);
+                if (!res.ok) {
+                    setError(true);
+                } else {
+                    const quizData = await res.json();
+                    setQuiz(quizData);
+                }
+            } catch (err) {
                 setError(true);
-            } else {
-                setQuiz(quizData);
             }
         };
 
