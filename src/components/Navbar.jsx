@@ -19,7 +19,7 @@ export default function Navbar() {
                             <span className={styles.welcome}>Hi, {user.username}</span>
                             {user.role === 'ADMIN' && (
                                 <Link href="/admin" className={styles.link}>
-                                    Admin
+                                    Dashboard
                                 </Link>
                             )}
                             <button onClick={logout} className={styles.logoutBtn}>
