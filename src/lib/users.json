@@ -10,5 +10,11 @@
         "username": "seema",
         "password": "seema123",
         "role": "USER"
+    },
+    {
+        "id": "a9df7bda-a4eb-4bec-a746-b33916a97993",
+        "username": "test",
+        "password": "test123",
+        "role": "USER"
     }
 ]

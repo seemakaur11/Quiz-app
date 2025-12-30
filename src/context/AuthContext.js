@@ -16,11 +16,22 @@ export function AuthProvider({ children }) {
 
     const checkUser = async () => {
         try {
-            const res = await fetch('/api/auth/me');
-            const data = await res.json();
-            setUser(data.user);
+            // Add a timeout to prevent infinite loading if server doesn't respond
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+            const res = await fetch('/api/auth/me', { signal: controller.signal });
+            clearTimeout(timeoutId);
+
+            if (res.ok) {
+                const data = await res.json();
+                setUser(data.user);
+            } else {
+                setUser(null);
+            }
         } catch (error) {
             console.error('Error checking auth:', error);
+            setUser(null);
         } finally {
             setLoading(false);
         }

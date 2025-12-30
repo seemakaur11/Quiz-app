@@ -79,5 +79,24 @@
                 "correctAnswer": 2
             }
         ]
+    },
+    {
+        "id": "6b6e2701-09a0-4ab1-a2f3-2d04afcd784e",
+        "title": "Advance CSS",
+        "description": "test CSS",
+        "questions": [
+            {
+                "id": "q1",
+                "text": "What does CSS stand for?",
+                "options": [
+                    "cascading style sheet",
+                    "test1",
+                    "test2",
+                    "test3"
+                ],
+                "correctAnswer": 0
+            }
+        ],
+        "durationMinutes": 10
     }
 ]

@@ -14,7 +14,9 @@ async function writeData(quizzes) {
 }
 
 export async function GET(request, { params }) {
+    console.log('Fetching quiz with ID:', params.id);
     const quiz = await getQuizById(params.id);
+    console.log('Quiz found:', quiz);
 
     if (!quiz) {
         return new NextResponse('Quiz not found', { status: 404 });

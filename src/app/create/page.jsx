@@ -14,15 +14,19 @@ export default function CreateQuizPage() {
         { text: '', options: ['', '', '', ''], correctAnswer: 0 }
     ]);
 
-    // Protect Route - Admin only
+    // Protect Route - any logged-in user
     useEffect(() => {
-        if (!loading && (!user || user.role !== 'ADMIN')) {
+        if (!loading && !user) {
             router.push('/login');
         }
     }, [user, loading, router]);
 
-    if (loading || !user || user.role !== 'ADMIN') {
+    if (loading) {
         return <div className="container" style={{ textAlign: 'center', marginTop: '4rem' }}>Loading...</div>;
+    }
+
+    if (!user) {
+        return null; // Don't show anything while redirecting
     }
 
     const handleQuestionChange = (index, field, value) => {

@@ -1,29 +1,37 @@
 'use client';
 
 import QuizTaker from '@/components/QuizTaker';
-import { notFound } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function QuizPage({ params }) {
     const { user, loading } = useAuth();
     const router = useRouter();
     const [quiz, setQuiz] = useState(null);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchQuiz = async () => {
             try {
+                console.log('Fetching quiz with ID:', params.id);
                 const res = await fetch(`/api/quizzes/${params.id}`);
+                console.log('Response status:', res.status);
+                
                 if (!res.ok) {
-                    setError(true);
+                    setError(`Quiz not found (${res.status})`);
                 } else {
                     const quizData = await res.json();
+                    console.log('Quiz data received:', quizData);
                     setQuiz(quizData);
                 }
             } catch (err) {
-                setError(true);
+                console.error('Error fetching quiz:', err);
+                setError(err.message);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -36,7 +44,7 @@ export default function QuizPage({ params }) {
         }
     }, [user, loading, router]);
 
-    if (loading) {
+    if (loading || isLoading) {
         return (
             <div className="container" style={{ padding: '4rem 1rem', textAlign: 'center' }}>
                 <p>Loading...</p>
@@ -48,8 +56,28 @@ export default function QuizPage({ params }) {
         return null;
     }
 
-    if (error || !quiz) {
-        notFound();
+    if (error) {
+        return (
+            <div className="container" style={{ padding: '4rem 1rem', textAlign: 'center' }}>
+                <h1 style={{ color: '#ef4444', marginBottom: '1rem' }}>Error</h1>
+                <p style={{ color: '#94a3b8', marginBottom: '2rem' }}>{error}</p>
+                <Link href="/" className="btn btn-primary">
+                    Back to Home
+                </Link>
+            </div>
+        );
+    }
+
+    if (!quiz) {
+        return (
+            <div className="container" style={{ padding: '4rem 1rem', textAlign: 'center' }}>
+                <h1 style={{ color: '#ef4444', marginBottom: '1rem' }}>Quiz Not Found</h1>
+                <p style={{ color: '#94a3b8', marginBottom: '2rem' }}>The quiz you're looking for doesn't exist.</p>
+                <Link href="/" className="btn btn-primary">
+                    Back to Home
+                </Link>
+            </div>
+        );
     }
 
     return (

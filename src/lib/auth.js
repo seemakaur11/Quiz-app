@@ -53,3 +53,9 @@ export async function registerUser(username, password) {
     const { password: _, ...userWithoutPassword } = newUser;
     return userWithoutPassword;
 }
+
+export async function getAllUsers() {
+    const users = await readUsers();
+    // Return users without passwords
+    return users.map(({ password, ...user }) => user);
+}

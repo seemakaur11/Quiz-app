@@ -1,6 +1,6 @@
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
-import Navbar from "@/components/Navbar"; // We'll create this next
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
     title: "QuizMaster - Premium Online Quizzes",
