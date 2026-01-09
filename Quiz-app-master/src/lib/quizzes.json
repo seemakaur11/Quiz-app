@@ -98,5 +98,24 @@
             }
         ],
         "durationMinutes": 10
+    },
+    {
+        "id": "ac89d3ee-995e-4a8e-ac55-d0af433f7e11",
+        "title": "python",
+        "description": "pyhton is general purpose",
+        "questions": [
+            {
+                "id": "q1",
+                "text": " Who developed Python Programming Language?",
+                "options": [
+                    "Wick van Rossum",
+                    " Rasmus Lerdorf",
+                    "Guido van Rossum",
+                    " Niene Stom"
+                ],
+                "correctAnswer": 0
+            }
+        ],
+        "durationMinutes": 10
     }
 ]
